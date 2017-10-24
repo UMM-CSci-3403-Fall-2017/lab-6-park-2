@@ -20,21 +20,21 @@ public class EchoServer {
 
 		try{
 			serverSocket = new ServerSocket(port);
-			System.out.println(GetTime() + "server is ready");
+			System.out.println(getTime() + "server is ready");
 			
 			Socket socket = serverSocket.accept();
 			InetAddress clientAddress = socket.getInetAddress();
-			System.out.println(getTime() + clientAddress + "client access from")
+			System.out.println(getTime() + clientAddress + "client access from");
 			
-			OutputSteam out = socket.getOutputStream();
+			OutputStream out = socket.getOutputStream();
 			InputStream in = socket.getInputStream();
 
 			PrintWriter pw = new PrintWriter(new OutputStreamWriter(out));
-			BufferedRead br = new BufferedReader(new InputStreamReader(in));
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
 			String recvStr = null;
 			while((recvStr = br.readLine()) != null){
-				System.out.print.ln(getTime() + "received string from client : " + recvStr);
+				System.out.println(getTime() + "received string from client : " + recvStr);
 				pw.println(recvStr);
 				pw.flush();
 			}
@@ -51,20 +51,4 @@ public class EchoServer {
 		return f.format(new Date());
 	}
 }
-
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -1,5 +1,3 @@
-package echoserver;
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,8 +15,8 @@ public class EchoClient {
 
 			BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 
-			OutputStream out = socket.getOutStream();
-			InputStream in = Socket.getInputStream();
+			OutputStream out = socket.getOutputStream();
+			InputStream in = socket.getInputStream();
 
 			PrintWriter pw = new PrintWriter(new OutputStreamWriter(out));
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -27,7 +25,7 @@ public class EchoClient {
 			String echo = null;
 
 			while((myMsg = input.readLine()) != null) {
-				if(myMsg.equsl("/1")) {
+				if(myMsg.equals("/q")) {
 					break;
 
 				}
@@ -36,7 +34,7 @@ public class EchoClient {
 				pw.flush();
 				
 				echo = br.readLine();
-				System.out.println("Server: " + echo;
+				System.out.println("Server: " + echo);
 
 			}
 
@@ -46,5 +44,7 @@ public class EchoClient {
 		}catch(Exception e) {
 			e.printStackTrace();
 	}
+
+}
 
 }
