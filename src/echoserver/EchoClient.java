@@ -10,5 +10,41 @@ import java.net.Socket;
 
 public class EchoClient {
 	public static void main(String[] args) {
+		try{
+			String ip = "localhost";
+			int port = 10001;
+			Socket socket = new Socket(ip, port);
+
+			BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+
+			OutputStream out = socket.getOutStream();
+			InputStream in = Socket.getInputStream();
+
+			PrintWriter pw = new PrintWriter(new OutputStreamWriter(out));
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+			String myMsg = null;
+			String echo = null;
+
+			while((myMsg = input.readLine()) != null) {
+				if(myMsg.equsl("/1")) {
+					break;
+
+				}
+
+				pw.println(myMsg);
+				pw.flush();
+				
+				echo = br.readLine();
+				System.out.println("Server: " + echo;
+
+			}
+
+			pw.close();
+			br.close();
+			socket.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+	}
 
 }
