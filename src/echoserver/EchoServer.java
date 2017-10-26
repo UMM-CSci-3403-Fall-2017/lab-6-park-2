@@ -42,6 +42,7 @@ public class EchoServer {
 			pw.close();
 			br.close();
 			socket.close();
+			client.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
