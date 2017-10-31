@@ -10,25 +10,26 @@ public class EchoServer {
 		int port = 6013;
 
 		try {
-			serverSocket = new ServerSocket(port);
-			System.out.println("server is ready!" +port);
+			ServerSocket socket  = new ServerSocket(port);
 
 			while (true) {
-				Socket clientSocket = serverSocket.accept();
-				System.out.println("Accepted connection from Client!");
 
-				OutputStream out = clientSocket.getOutputStream();
-				InputStream reader = clientSocket.getInputStream();
+				System.out.println("Accepted connection from Client!");
+				Socket clientsocket = socket.accept();
+								
+
+				OutputStream out = clientsocket.getOutputStream();
+				InputStream reader = clientsocket.getInputStream();
 
 				int newType;
 
 				while((newType = reader.read()) != -1) {
-					System.out.println(newType);
+					out.write(newType);
 
 				}
 
 				out.flush();
-				clientSocket.close();
+				clientsocket.close();
 
 			}
 
