@@ -1,50 +1,41 @@
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.net.Socket;
+package echoserver;
+
+import java.net.*;
+import java.io.*;
 
 public class EchoClient {
-	public static void main(String[] args) {
+	public static void main(String [] args) {
 		try{
 			String ip = "localhost";
-			int port = 10001;
+			int port = 6013;
 			Socket socket = new Socket(ip, port);
+			
+			InputStream stdIn = System.in;
+			OutputStream stdOut = System.out;
 
-			BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+			InputStream reader = socket.getInputStream();
+			OutputStream output = socket.getOutputStream();
 
-			OutputStream out = socket.getOutputStream();
-			InputStream in = socket.getInputStream();
+			int NewByte;
+			int anotherByte;
 
-			PrintWriter pw = new PrintWriter(new OutputStreamWriter(out));
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-
-			String myMsg = null;
-			String echo = null;
-
-			while((myMsg = input.readLine()) != null) {
-				if(myMsg.equals("/q")) {
-					break;
-
-				}
-
-				pw.println(myMsg);
-				pw.flush();
-				
-				echo = br.readLine();
-				System.out.println("Server: " + echo);
+			
+			while((NewByte = System.in.read()) != -1){
+				output.write(NewByte);
+				anotherByte = reader.read();
+				System.out.write(anotherByte);
 
 			}
 
-			pw.close();
-			br.close();
+			output.flush();
+			System.out.flush();
+			stdOut.flush();
+			stdIn.close();
 			socket.close();
-		}catch(Exception e) {
-			e.printStackTrace();
+
+		} catch (IOException ioe) {
+			System.out.println("ERROR");
+			System.out.println(ioe);
+		}
 	}
-
-}
-
 }
