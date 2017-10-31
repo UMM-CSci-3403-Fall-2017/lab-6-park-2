@@ -7,6 +7,7 @@ public class EchoClient {
 	public static void main(String [] args) {
 		try{
 			String ip = "localhost";
+
 			int port = 6013;
 			Socket socket = new Socket(ip, port);
 			
@@ -39,3 +40,4 @@ public class EchoClient {
 		}
 	}
 }
+
