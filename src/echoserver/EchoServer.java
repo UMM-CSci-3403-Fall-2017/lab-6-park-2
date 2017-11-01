@@ -13,26 +13,25 @@ public class EchoServer {
 			ServerSocket socket  = new ServerSocket(port);
 
 			while (true) {
-
+					
+				Socket clientSocket = socket.accept();
 				System.out.println("Accepted connection from Client!");
-				Socket clientsocket = socket.accept();
-								
-
-				OutputStream out = clientsocket.getOutputStream();
-				InputStream reader = clientsocket.getInputStream();
+				
+				InputStream reader = clientSocket.getInputStream();
+				OutputStream output = clientSocket.getOutputStream();
 
 				int newType;
 
 				while((newType = reader.read()) != -1) {
-					out.write(newType);
+					output.write(newType);
 
 				}
 				
 				
-				out.flush();
-				out.close();
+				output.flush();
+				output.close();
 				reader.close();
-				clientsocket.close();
+				clientSocket.close();
 				
 			}
 
