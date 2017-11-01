@@ -27,10 +27,13 @@ public class EchoServer {
 					out.write(newType);
 
 				}
-
+				
+				
 				out.flush();
+				out.close();
+				reader.close();
 				clientsocket.close();
-
+				
 			}
 
 		} catch (IOException ioe) {
