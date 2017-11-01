@@ -14,11 +14,11 @@ public class EchoServer {
 
 			while (true) {
 					
-				Socket clientSocket = socket.accept();
+				Socket socket = socket.accept();
 				System.out.println("Accepted connection from Client!");
 				
-				InputStream reader = clientSocket.getInputStream();
-				OutputStream output = clientSocket.getOutputStream();
+				InputStream reader = socket.getInputStream();
+				OutputStream output = socket.getOutputStream();
 
 				int newType;
 
@@ -31,7 +31,7 @@ public class EchoServer {
 				output.flush();
 				output.close();
 				reader.close();
-				clientSocket.close();
+				socket.close();
 				
 			}
 
