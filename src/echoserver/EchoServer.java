@@ -26,11 +26,8 @@ public class EchoServer {
 					output.write(newType);
 
 				}
-				
-				
+
 				output.flush();
-				output.close();
-				reader.close();
 				clientsocket.close();
 				
 			}
