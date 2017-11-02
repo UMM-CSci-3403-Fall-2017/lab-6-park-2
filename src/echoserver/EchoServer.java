@@ -3,7 +3,7 @@ package echoserver;
 import java.net.*;
 import java.io.*;
 
-
+//comment codes
 public class EchoServer {
 	public static void main(String[] args) {
 		ServerSocket serverSocket = null;
